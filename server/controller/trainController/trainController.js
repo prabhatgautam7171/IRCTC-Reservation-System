@@ -609,7 +609,7 @@ export const getChoiceTrains = async (req, res) => {
   try {
     console.log('Search API hit ✅', 'Query:', req.query);
 
-    const { from, to, date ,refresh} = req.query;
+    const { from, to, date, refresh } = req.query;
 
 
     console.log('refresh value:', refresh);
@@ -644,24 +644,27 @@ export const getChoiceTrains = async (req, res) => {
     const fromValue = cleanInput(from);
     const toValue = cleanInput(to);
 
-    if(refresh === "false") {
+    if (refresh === "false") {
 
       console.log('Attempting to serve from cache with key:', `train:${fromValue}-${toValue}-${date}`);
-    const cacheKey = `train:${fromValue}-${toValue}-${date}`;
+      const cacheKey = `train:${fromValue}-${toValue}-${date}`;
 
-    console.log('⚡ Checking Redis cache ')
+      console.log('⚡ Checking Redis cache ')
 
-    // 🔥 1. Check Redis
-    const cached = await redisClient.get(cacheKey);
+      // 🔥 1. Check Redis
+      if (redisClient) {
+        const cached = await redisClient.get(cacheKey);
 
-    if (cached) {
-      const parsed = JSON.parse(cached);
-      console.log("🚨 CACHED DATA:", parsed);
-      if (Array.isArray(parsed)) {
-        return res.json({ success: true, trains: parsed });
+        if (cached) {
+          const parsed = JSON.parse(cached);
+          console.log("🚨 CACHED DATA:", parsed);
+          if (Array.isArray(parsed)) {
+            return res.json({ success: true, trains: parsed });
+          }
+        }
+
       }
     }
-  }
 
     const response = [];
 
@@ -1007,9 +1010,11 @@ export const getChoiceTrains = async (req, res) => {
     }
 
     // 🔥 2. Store in Redis (TTL = 2 min)
-    if (response.length > 0 && refresh === "false") {
-      const cacheKey = `train:${fromValue}-${toValue}-${date}`;
-      await redisClient.setEx(cacheKey, 120, JSON.stringify(response));
+    if (redisClient) {
+      if (response.length > 0 && refresh === "false") {
+        const cacheKey = `train:${fromValue}-${toValue}-${date}`;
+        await redisClient.setEx(cacheKey, 120, JSON.stringify(response));
+      }
     }
 
     console.log('refresh value:', refresh);
