@@ -10,8 +10,8 @@ import userRoute from './routes/authRoute/userRoute.js'
 // // import authGithubRoute from "./routes/authRoute/authGithubRoute.js"
 import cookieParser from 'cookie-parser';
 import trainRoute from  './routes/trainRoute/trainroute.js'
-import bookingRoute from './routes/trainRoute/bookingRoute.js'
-import paymentRoutes from './routes/trainRoute/paymentRoute.js';
+// import bookingRoute from './routes/trainRoute/bookingRoute.js'
+// import paymentRoutes from './routes/trainRoute/paymentRoute.js';
 // import airlineRoute from './routes/airplaneRoute/airlineRoute.js'
 // import aircraftRoute from './routes/airplaneRoute/aircraftRoute.js'
 // import flightRoute from './routes/airplaneRoute/flightRoute.js'
@@ -117,8 +117,8 @@ app.use('/api/v1/user', userRoute);
 // app.use('/api/v1/google', authGoogleRoute);
 // // app.use("/api/v1/github", authGithubRoute);
 app.use('/api/v1/train', trainRoute);
-app.use('/api/v1/booking', bookingRoute);
-app.use('/api/v1/payment', paymentRoutes);
+// app.use('/api/v1/booking', bookingRoute);
+// app.use('/api/v1/payment', paymentRoutes);
 
 // // plane Apis
 // app.use('/api/v1/airline', airlineRoute);
