@@ -5,7 +5,7 @@ dotenv.config({});
 // import { connectDb } from './DB/db.js';
 import cors from 'cors';
 // // import passport from "./config/passport.js"
-// import userRoute from './routes/authRoute/userRoute.js'
+import userRoute from './routes/authRoute/userRoute.js'
 // import authGoogleRoute from './routes/authRoute/authGoogleRoute.js'
 // // import authGithubRoute from "./routes/authRoute/authGithubRoute.js"
 import cookieParser from 'cookie-parser';
@@ -113,7 +113,7 @@ startServer();
 
 // train Apis
 
-// app.use('/api/v1/user', userRoute);
+app.use('/api/v1/user', userRoute);
 // app.use('/api/v1/google', authGoogleRoute);
 // // app.use("/api/v1/github", authGithubRoute);
 // app.use('/api/v1/train', trainRoute);
