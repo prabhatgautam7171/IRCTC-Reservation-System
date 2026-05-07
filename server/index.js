@@ -1,3 +1,4 @@
+console.log("STEP 1");
 import express from 'express';
 import dotenv from 'dotenv';
 dotenv.config({});
@@ -18,6 +19,7 @@ import bookingFlightRoute from './routes/airplaneRoute/bookFlightRoute.js'
 import flightPaymentRoute from './routes/airplaneRoute/flightPaymentRoute.js'
 import { Server } from 'socket.io';
 import http from 'http'
+console.log("STEP 2");
 
 
 const app = express();
@@ -83,15 +85,19 @@ app.get("/", (req, res) => {
   res.send("Server Running");
 });
 
+console.log("STEP 3");
+
 const startServer = async () => {
   try {
 
     server.listen(PORT, "0.0.0.0", () => {
       console.log(`Server running on port ${PORT}`);
+      console.log("STEP 4 - SERVER STARTED");
     });
-
+    console.log("STEP 5 - CONNECTING DB");
     await connectDb();
-    console.log("MongoDB Connected");
+    console.log("STEP 6 - DB CONNECTED");
+
 
   } catch (err) {
     console.error("Startup Error:", err);
