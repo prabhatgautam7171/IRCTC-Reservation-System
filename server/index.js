@@ -24,7 +24,7 @@ const app = express();
 
 
 const PORT = process.env.PORT || 4000 ;
-connectDb();
+
 
 ///default middleware
 
@@ -36,7 +36,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const corsOptions = {
-    origin : 'http://localhost:3000',
+    origin : process.env.CLIENT_URL,
     credentials : true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
 }
@@ -49,7 +49,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: process.env.CLIENT_URL,
     methods: ["GET", "POST"]
   }
 });
@@ -79,11 +79,21 @@ io.on('connection', (socket) => {
 });
 
 
-server.listen(PORT, () => {
-    console.log(`🔌 Server + Socket.io running on port ${PORT}`);
-}).on("error", (err) => {
-  console.error("Server error:", err.message);
-});
+const startServer = async () => {
+  try {
+
+    await connectDb();
+
+    server.listen(PORT, () => {
+      console.log(`🔌 Server + Socket.io running on port ${PORT}`);
+    });
+
+  } catch (err) {
+    console.error("Startup Error:", err);
+  }
+};
+
+startServer();
 
 
 
