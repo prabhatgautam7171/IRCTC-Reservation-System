@@ -1,6 +1,6 @@
-dotenv.config({});
 import express from 'express';
 import dotenv from 'dotenv';
+dotenv.config({});
 import { connectDb } from './DB/db.js';
 import cors from 'cors';
 // import passport from "./config/passport.js"
@@ -79,18 +79,19 @@ io.on('connection', (socket) => {
 });
 
 
+app.get("/", (req, res) => {
+  res.send("Server Running");
+});
+
 const startServer = async () => {
   try {
-
-    await connectDb();
 
     server.listen(PORT, "0.0.0.0", () => {
       console.log(`Server running on port ${PORT}`);
     });
 
-    app.get("/", (req, res) => {
-      res.send("Server Running");
-    });
+    await connectDb();
+    console.log("MongoDB Connected");
 
   } catch (err) {
     console.error("Startup Error:", err);
@@ -106,19 +107,19 @@ startServer();
 
 // train Apis
 
-app.use('/api/v1/user', userRoute);
-app.use('/api/v1/google', authGoogleRoute);
-// app.use("/api/v1/github", authGithubRoute);
-app.use('/api/v1/train', trainRoute);
-app.use('/api/v1/booking', bookingRoute);
-app.use('/api/v1/payment', paymentRoutes);
+// app.use('/api/v1/user', userRoute);
+// app.use('/api/v1/google', authGoogleRoute);
+// // app.use("/api/v1/github", authGithubRoute);
+// app.use('/api/v1/train', trainRoute);
+// app.use('/api/v1/booking', bookingRoute);
+// app.use('/api/v1/payment', paymentRoutes);
 
-// plane Apis
-app.use('/api/v1/airline', airlineRoute);
-app.use('/api/v1/aircraft', aircraftRoute);
-app.use('/api/v1/flight', flightRoute);
-app.use('/api/v1/booking', bookingFlightRoute );
-app.use('/api/v1/payment-flight', flightPaymentRoute  );
+// // plane Apis
+// app.use('/api/v1/airline', airlineRoute);
+// app.use('/api/v1/aircraft', aircraftRoute);
+// app.use('/api/v1/flight', flightRoute);
+// app.use('/api/v1/booking', bookingFlightRoute );
+// app.use('/api/v1/payment-flight', flightPaymentRoute  );
 
 
 
