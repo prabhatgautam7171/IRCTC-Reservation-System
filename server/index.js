@@ -84,8 +84,12 @@ const startServer = async () => {
 
     await connectDb();
 
-    server.listen(PORT, () => {
-      console.log(`🔌 Server + Socket.io running on port ${PORT}`);
+    server.listen(PORT, "0.0.0.0", () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+
+    app.get("/", (req, res) => {
+      res.send("Server Running");
     });
 
   } catch (err) {
