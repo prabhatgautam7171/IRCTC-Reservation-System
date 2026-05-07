@@ -2,7 +2,7 @@ console.log("STEP 1");
 import express from 'express';
 import dotenv from 'dotenv';
 dotenv.config({});
-// import { connectDb } from './DB/db.js';
+import { connectDb } from './DB/db.js';
 import cors from 'cors';
 // // import passport from "./config/passport.js"
 import userRoute from './routes/authRoute/userRoute.js'
@@ -95,7 +95,7 @@ const startServer = async () => {
       console.log("STEP 4 - SERVER STARTED");
     });
     console.log("STEP 5 - CONNECTING DB");
-    // await connectDb();
+    await connectDb();
     console.log("STEP 6 - DB CONNECTED");
 
 
