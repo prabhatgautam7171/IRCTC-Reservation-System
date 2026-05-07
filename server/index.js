@@ -17,8 +17,8 @@ import paymentRoutes from './routes/trainRoute/paymentRoute.js';
 // import flightRoute from './routes/airplaneRoute/flightRoute.js'
 // import bookingFlightRoute from './routes/airplaneRoute/bookFlightRoute.js'
 // import flightPaymentRoute from './routes/airplaneRoute/flightPaymentRoute.js'
-// import { Server } from 'socket.io';
-// import http from 'http'
+import { Server } from 'socket.io';
+import http from 'http'
 console.log("STEP 2");
 
 
@@ -47,45 +47,45 @@ app.use(cors(corsOptions));
 
 // // app.use(passport.initialize());
 
-// const server = http.createServer(app);
+const server = http.createServer(app);
 
-// const io = new Server(server, {
-//   cors: {
-//     origin: process.env.CLIENT_URL,
-//     methods: ["GET", "POST"]
-//   }
-// });
+const io = new Server(server, {
+  cors: {
+    origin: process.env.CLIENT_URL,
+    methods: ["GET", "POST"]
+  }
+});
 
-// app.set('io', io); // Make io accessible in routes via req.app.get('io')
+app.set('io', io); // Make io accessible in routes via req.app.get('io')
 
-// io.on('connection', (socket) => {
-//   console.log('new client connected:', socket.id);
+io.on('connection', (socket) => {
+  console.log('new client connected:', socket.id);
 
-//   // ✅ JOIN ROOM (VERY IMPORTANT)
-//   socket.on('joinTrainRoom', ({ trainId, date, sourceIndex, destIndex }) => {
-//     const room = `${trainId}_${date}_${sourceIndex}_${destIndex}`;
-//     socket.join(room);
+  // ✅ JOIN ROOM (VERY IMPORTANT)
+  socket.on('joinTrainRoom', ({ trainId, date, sourceIndex, destIndex }) => {
+    const room = `${trainId}_${date}_${sourceIndex}_${destIndex}`;
+    socket.join(room);
 
-//     console.log(`Socket ${socket.id} joined room: ${room}`);
-//   });
+    console.log(`Socket ${socket.id} joined room: ${room}`);
+  });
 
-//   socket.on('leaveTrainRoom', ({ trainId, date, sourceIndex, destIndex }) => {
-//     const room = `${trainId}_${date}_${sourceIndex}_${destIndex}`;
-//     socket.leave(room);
-//   });
+  socket.on('leaveTrainRoom', ({ trainId, date, sourceIndex, destIndex }) => {
+    const room = `${trainId}_${date}_${sourceIndex}_${destIndex}`;
+    socket.leave(room);
+  });
 
-//   // ✅ DISCONNECT
-//   socket.on('disconnect', () => {
-//     console.log('client disconnected:', socket.id);
-//   });
-// });
+  // ✅ DISCONNECT
+  socket.on('disconnect', () => {
+    console.log('client disconnected:', socket.id);
+  });
+});
 
 
-// app.get("/", (req, res) => {
-//   res.send("Server Running");
-// });
+app.get("/", (req, res) => {
+  res.send("Server Running");
+});
 
-// console.log("STEP 3");
+console.log("STEP 3");
 
 const startServer = async () => {
   try {
