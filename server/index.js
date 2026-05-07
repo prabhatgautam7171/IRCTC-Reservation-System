@@ -3,7 +3,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 dotenv.config({});
 // import { connectDb } from './DB/db.js';
-// import cors from 'cors';
+import cors from 'cors';
 // // import passport from "./config/passport.js"
 // import userRoute from './routes/authRoute/userRoute.js'
 // import authGoogleRoute from './routes/authRoute/authGoogleRoute.js'
@@ -32,18 +32,18 @@ const PORT = process.env.PORT || 4000 ;
 
 
 // // Middleware to parse JSON requests
-// app.use(express.json());
-// // Middleware to parse URL-encoded requests
-// app.use(express.urlencoded({ extended: true }));
-// app.use(cookieParser());
+app.use(express.json());
+// Middleware to parse URL-encoded requests
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
-// const corsOptions = {
-//     origin : process.env.CLIENT_URL,
-//     credentials : true,
-//     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
-// }
+const corsOptions = {
+    origin : process.env.CLIENT_URL,
+    credentials : true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+}
 
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 // // app.use(passport.initialize());
 
