@@ -8,7 +8,7 @@ import cors from 'cors';
 // import userRoute from './routes/authRoute/userRoute.js'
 // import authGoogleRoute from './routes/authRoute/authGoogleRoute.js'
 // // import authGithubRoute from "./routes/authRoute/authGithubRoute.js"
-// import cookieParser from 'cookie-parser';
+import cookieParser from 'cookie-parser';
 // import trainRoute from  './routes/trainRoute/trainroute.js'
 // import bookingRoute from './routes/trainRoute/bookingRoute.js'
 // import paymentRoutes from './routes/trainRoute/paymentRoute.js';
