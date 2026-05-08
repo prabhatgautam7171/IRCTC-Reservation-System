@@ -27,12 +27,6 @@ export const bookTrain = async (req, res) => {
     console.log("➡️ Params:", req.params);
     console.log("➡️ Body:", req.body);
 
-    app.get("/", (req, res) => {
-    console.log("✅ Booking route hit");
-    console.log("➡️ Params:", req.params);
-    console.log("➡️ Body:", req.body);
-    });
-
     const { passengers, source, destination, journeyDate, reachingTime, selectedQuota } = req.body;
     const io = req.app.get("io");
 
