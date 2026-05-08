@@ -28,8 +28,8 @@ export const createCheckoutSession = async (req, res) => {
             quantity: requiredSeats,
           },
         ],
-        success_url: `process.env.CLIENT_URL/auth/payment-success/{CHECKOUT_SESSION_ID}`,
-        cancel_url: `process.env.CLIENT_URL/auth/payment-cancel`,
+        success_url: `${process.env.CLIENT_URL}/auth/payment-success/{CHECKOUT_SESSION_ID}`,
+        cancel_url: `${process.env.CLIENT_URL}/auth/payment-cancel`,
       });
 
 
