@@ -13,7 +13,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:8000/api/v1/user/register', form, {
+      const res = await axios.post('${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/register', form, {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true
       });
