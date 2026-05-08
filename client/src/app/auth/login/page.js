@@ -27,7 +27,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/v1/user/login",
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/login`,
         form,
         {
           headers: { "Content-Type": "application/json" },
@@ -55,7 +55,7 @@ const Login = () => {
 
   const handleGoogleSuccess = async (credentialResponse) => {
     try {
-      const res = await fetch("http://localhost:8000/api/v1/google/login", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/google/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
