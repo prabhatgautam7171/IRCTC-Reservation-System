@@ -12,7 +12,7 @@ const useFetchTrains = () => {
   useEffect(() => {
     const fetchTrains = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/api/v1/train/get-Alltrains" , {
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/train/get-Alltrains` , {
         withCredentials : true});
         if (res.data && res.data.allTrains) {
           dispatch(setTrains(res.data.allTrains));
