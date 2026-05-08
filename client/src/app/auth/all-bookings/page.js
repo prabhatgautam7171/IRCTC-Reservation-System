@@ -31,7 +31,7 @@ const Page = () => {
     //  console.log('Passengers :', cancelledBookingPassengers);
     if (!confirm(`Are you sure Do you want to cancel booking ?`)) return;
     try {
-      const res = await axios.get(`http://localhost:8000/api/v1/booking/cancel-Booking/${bookingId}`,
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/booking/cancel-Booking/${bookingId}`,
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
