@@ -91,28 +91,21 @@ console.log("STEP 3");
 const startServer = async () => {
   try {
 
-    server.listen(PORT, "0.0.0.0", () => {
-      console.log(`Server running on port ${PORT}`);
-      console.log("STEP 4 - SERVER STARTED");
-    });
-
     console.log("STEP 5 - CONNECTING DB");
 
     await connectDb();
 
     console.log("STEP 6 - DB CONNECTED");
 
+    server.listen(PORT, "0.0.0.0", () => {
+      console.log(`Server running on port ${PORT}`);
+      console.log("STEP 4 - SERVER STARTED");
+    });
+
   } catch (err) {
     console.error("Startup Error:", err);
   }
 };
-
-startServer();
-
-
-
-
-
 
 // train Apis
 
@@ -122,6 +115,15 @@ app.use('/api/v1/user', userRoute);
 app.use('/api/v1/train', trainRoute);
 app.use('/api/v1/booking', bookingRoute);
 app.use('/api/v1/payment', paymentRoutes);
+
+startServer();
+
+
+
+
+
+
+
 
 // // plane Apis
 // app.use('/api/v1/airline', airlineRoute);
