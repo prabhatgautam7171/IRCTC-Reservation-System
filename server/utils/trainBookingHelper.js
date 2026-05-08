@@ -312,7 +312,7 @@ export async function handleCNFBooking({
       //?? ⚠️ Only For General Bookings
 
       // -------------------- 1️⃣ LADIES --------------------
-      if (availabilitySnapshot.ladies.limit > 0 && femalePassengers.length > 0 && selectedQuota.type !== 'tatkal' || 'premiumTatkal' && remainingPassengers.length > 0) {
+      if (availabilitySnapshot.ladies.limit > 0 && femalePassengers.length > 0 && selectedQuota.type !== 'tatkal' && selectedQuota.type !== 'premiumTatkal' && remainingPassengers.length > 0) {
 
         /// How much posibility to assign seats in ladies quota
         const limit = Math.min(availabilitySnapshot.ladies.limit, femalePassengers.length);
@@ -352,7 +352,7 @@ export async function handleCNFBooking({
       }
 
       // -------------------- 2️⃣ SENIOR --------------------
-      if (availabilitySnapshot.senior.limit > 0 && seniorPassengers.length > 0 && selectedQuota.type !== 'tatkal' || 'premiumTatkal' && remainingPassengers.length > 0) {
+      if (availabilitySnapshot.senior.limit > 0 && seniorPassengers.length > 0 && selectedQuota.type !== 'tatkal' && selectedQuota.type !== 'premiumTatkal' && remainingPassengers.length > 0) {
 
         const limit = Math.min(availabilitySnapshot.senior.limit, seniorPassengers.length);
 
@@ -389,7 +389,7 @@ export async function handleCNFBooking({
       }
 
       // -------------------- 3️⃣ GENERAL --------------------
-      if (availabilitySnapshot.general.limit > 0 && selectedQuota.type !== 'tatkal' || 'premiumTatkal' && remainingPassengers.length > 0) {
+      if (availabilitySnapshot.general.limit > 0 && selectedQuota.type !== 'tatkal' && selectedQuota.type !== 'premiumTatkal' && remainingPassengers.length > 0) {
 
         console.log('Booking general...')
 
@@ -427,7 +427,7 @@ export async function handleCNFBooking({
       }
 
       // -------------------- 4️⃣ RAC --------------------
-      if (availabilitySnapshot.rac > 0 && selectedQuota.type !== 'tatkal' || 'premiumTatkal' &&  remainingPassengers.length > 0) {
+      if (availabilitySnapshot.rac > 0 && selectedQuota.type !== 'tatkal' && selectedQuota.type !== 'premiumTatkal' &&  remainingPassengers.length > 0) {
         console.log('Booking RAC...')
 
         const limit = Math.min(availabilitySnapshot.rac, remainingPassengers.length);
@@ -469,7 +469,7 @@ export async function handleCNFBooking({
       }
 
       // -------------------- 5️⃣ WL --------------------
-      if ( availabilitySnapshot.wl > 0 && selectedQuota.type !== 'tatkal' || 'premiumTatkal' && remainingPassengers.length > 0) {
+      if ( availabilitySnapshot.wl > 0 && selectedQuota.type !== 'tatkal' && selectedQuota.type !== 'premiumTatkal' && remainingPassengers.length > 0) {
         console.log('Booking WL...')
 
         const res = await assignWL({
