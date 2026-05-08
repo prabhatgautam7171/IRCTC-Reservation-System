@@ -68,7 +68,7 @@ const TrainDetails = () => {
   const handleDeleteTrain = async () => {
     if (!confirm('Are you sure you want to delete this train? This action cannot be undone.')) return;
     try {
-      await axios.delete(`http://localhost:8000/api/v1/train/delete-train/${train._id}`);
+      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/train/delete-train/${train._id}`);
       router.push('/admin/dashboard/all-trains');
     } catch (err) {
       console.error('Error deleting train:', err);
