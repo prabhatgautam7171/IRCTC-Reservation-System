@@ -45,9 +45,15 @@ export async function finalizeBooking({
     console.log('selectedCoachType', selectedCoachType);
     console.log('boardingStation', boardingStation);
 
-    const user = await User.findById(userId); user.bookings.push(bookingId);
-    await user.save();
+    const user = await User.findById(userId);
 
+if (!user) {
+  throw new Error("User not found");
+}
+
+user.bookings.push(bookingId);
+
+await user.save({ session });
     const bookingData = await Booking.findById(bookingId)
       .populate("train")
       .session(session);
