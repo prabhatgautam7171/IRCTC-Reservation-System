@@ -16,7 +16,7 @@ export const isAuthenticated = async (req, res, next) => {
     //   return res.status(401).json({ success: false, message: "No token provided" });
     // }
 
-    const token = req.cookies.token;
+    let token = req.cookies.token;
 
     // ✅ also allow Authorization header (for testing tools)
     if (!token && req.headers.authorization) {
