@@ -14,7 +14,7 @@ const ResetPassword = () => {
   const handleReset = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`http://localhost:8000/api/v1/user/resetPassword`, { newPassword, confirmPassword });
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/resetPassword`, { newPassword, confirmPassword });
       setStatus(res.data.message);
       if(res.data.success){
         toast.message(res.data.message);
