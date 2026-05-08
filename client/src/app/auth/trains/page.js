@@ -317,7 +317,7 @@ export default function TrainSearchPage() {
       console.log("Searching:", from, to, date);
 
       const res = await axios.get(
-        `http://localhost:8000/api/v1/train/get-choicetrains?from=${encodeURIComponent(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/train/get-choicetrains?from=${encodeURIComponent(
           from
         )}&to=${encodeURIComponent(to)}&date=${encodeURIComponent(date)}&refresh=${refresh ? "true" : "false"}`,
 
@@ -357,7 +357,7 @@ export default function TrainSearchPage() {
     setLoading(true);
     try {
       const res = await axios.get(
-        `http://localhost:8000/api/v1/train/get-choicetrains?from=${encodeURIComponent(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/train/get-choicetrains?from=${encodeURIComponent(
           from
         )}&to=${encodeURIComponent(to)}&date=${encodeURIComponent(formattedDate)}`
       );
