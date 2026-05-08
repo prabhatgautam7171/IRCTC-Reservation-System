@@ -15,7 +15,7 @@ const useFetchBookings = () => {
     const fetchBookings = async () => {
       try {
         // const token = localStorage.getItem("token"); 
-        const res = await axios.get("http://localhost:8000/api/v1/booking/getAllBookings", {
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/booking/getAllBookings`, {
             withCredentials : true
         });
         if (res.data.success) {
