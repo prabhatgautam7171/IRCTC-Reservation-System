@@ -60,8 +60,8 @@ await user.save({ session });
 
     console.log('Booking Data :', bookingData);
 
-    const html = generateTicket(bookingData);
-    await sendTicketEmail({ to: user.email, subject: "Your IRCTC e-Ticket", html, });
+    // const html = generateTicket(bookingData);
+    // await sendTicketEmail({ to: user.email, subject: "Your IRCTC e-Ticket", html, });
 
 
     console.log("✅ CNF Booking Done for", bookingId);
