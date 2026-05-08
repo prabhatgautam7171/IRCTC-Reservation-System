@@ -14,7 +14,7 @@ const useFetchAllBookings = () => {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-      const res = await axios.get("http://localhost:8000/api/v1/booking/get-Bookigs" , {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/booking/get-Bookigs` , {
      withCredentials : true});
         if (res.data && res.data.allBookings) {
             console.log(res.data.allBookigs);
