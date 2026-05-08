@@ -9,7 +9,7 @@ export const logoutUser = async ( {dispatch, router} ) => {
   console.log("dispatch received:", dispatch);
   try {
     const response = await axios.get(
-      "http://localhost:8000/api/v1/user/logout",
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/logout`,
       { withCredentials: true }
     );
 
