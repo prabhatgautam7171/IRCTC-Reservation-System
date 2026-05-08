@@ -327,7 +327,7 @@ export const bookTrain = async (req, res) => {
 
       console.log('CNF result', result);
 
-      await emitRealTimeUpdate(io, train._id, journeyDate, source, sourceIndex, destIndex, selectedCoachType);
+      // await emitRealTimeUpdate(io, train._id, journeyDate, source, sourceIndex, destIndex, selectedCoachType);
 
       return res.status(201).json({
         message: "✅ Quota CNF Booking Successful",
@@ -356,7 +356,7 @@ export const bookTrain = async (req, res) => {
 
       console.log('RAC result', result);
 
-      await emitRealTimeUpdate(io, train._id, journeyDate, source, sourceIndex, destIndex, selectedCoachType);
+      // await emitRealTimeUpdate(io, train._id, journeyDate, source, sourceIndex, destIndex, selectedCoachType);
 
       return res.status(201).json({
         message: "✅ RAC Booking Successful",
@@ -385,7 +385,7 @@ export const bookTrain = async (req, res) => {
 
       console.log('WL result', result);
 
-      await emitRealTimeUpdate(io, train._id, journeyDate, source, sourceIndex, destIndex, selectedCoachType);
+      // await emitRealTimeUpdate(io, train._id, journeyDate, source, sourceIndex, destIndex, selectedCoachType);
 
       return res.status(201).json({
         message: "✅ WL Booking Successful",
