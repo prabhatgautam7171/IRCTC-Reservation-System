@@ -24,7 +24,7 @@ const OTPPage = () => {
     e.preventDefault();
     const finalOTP = otp.join("");
     try {
-      const res = await axios.post("http://localhost:8000/api/v1/user/verifyAuth", { token: finalOTP });
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/verifyAuth`, { token: finalOTP });
       setMessage(res.data.message);
       router.push('/auth/resetpass');
     } catch (err) {
