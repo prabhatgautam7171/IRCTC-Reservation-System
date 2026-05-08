@@ -54,6 +54,8 @@ export default function PaymentSuccess({ params }) {
       hasBookedRef.current = true;
       localStorage.setItem(bookingKey, "true");
 
+      console.log('Confirm Booking Handler ✅')
+
       try {
         const res = await axios.post(
           `${process.env.NEXT_PUBLIC_API_URL}/api/v1/booking/create-booking/${train?.id}/${coachType}`,
@@ -69,6 +71,8 @@ export default function PaymentSuccess({ params }) {
         );
 
         setBooking(res.data.bookingData);
+
+        console.log('booking :', booking);
 
         // Cleanup localStorage
         ["passengers", "trains", "coachType", "selectedSearch", "reachingTime"].forEach(key => localStorage.removeItem(key));
