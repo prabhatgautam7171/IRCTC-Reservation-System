@@ -91,14 +91,16 @@ console.log("STEP 3");
 const startServer = async () => {
   try {
 
-    app.listen(PORT, "0.0.0.0", () => {
+    server.listen(PORT, "0.0.0.0", () => {
       console.log(`Server running on port ${PORT}`);
       console.log("STEP 4 - SERVER STARTED");
     });
-    console.log("STEP 5 - CONNECTING DB");
-    await connectDb();
-    console.log("STEP 6 - DB CONNECTED");
 
+    console.log("STEP 5 - CONNECTING DB");
+
+    await connectDb();
+
+    console.log("STEP 6 - DB CONNECTED");
 
   } catch (err) {
     console.error("Startup Error:", err);
