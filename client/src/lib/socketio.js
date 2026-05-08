@@ -1,12 +1,12 @@
 // utils/socket.js
 import { io } from "socket.io-client";
 
-
 let socket;
 
 if (!global._socket) {
-  global._socket = io(`${process.env.NEXT_PUBLIC_API_URL}`, {
-    transports: ["websocket"], // 🔥 IMPORTANT
+  global._socket = io(process.env.NEXT_PUBLIC_API_URL, {
+    transports: ["polling", "websocket"],
+    withCredentials: true,
     autoConnect: true,
   });
 }
