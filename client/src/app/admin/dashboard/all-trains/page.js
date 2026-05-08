@@ -48,7 +48,7 @@ const Page = () => {
     const fetchTrains = async () => {
       try {
         setIsLoading(true);
-        const res = await axios.get('http://localhost:8000/api/v1/train/get-Alltrains', {
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/train/get-Alltrains`, {
           withCredentials : true,
         });
         if (res.data.allTrains) {
@@ -66,7 +66,7 @@ const Page = () => {
   const handleDelete = async (trainId) => {
     if (!confirm('Are you sure you want to delete this train?')) return;
     try {
-      await axios.delete(`http://localhost:8000/api/v1/train/delete-train/${trainId}` ,{
+      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/train/delete-train/${trainId}` ,{
         withCredentials: true,
       });
       dispatch(setTrains(trains.filter((train) => train._id !== trainId)));
