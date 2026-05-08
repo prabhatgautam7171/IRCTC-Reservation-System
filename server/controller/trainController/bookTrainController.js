@@ -327,12 +327,45 @@ export const bookTrain = async (req, res) => {
 
       console.log('CNF result', result);
 
-      // await emitRealTimeUpdate(io, train._id, journeyDate, source, sourceIndex, destIndex, selectedCoachType);
-
       return res.status(201).json({
         message: "✅ Quota CNF Booking Successful",
         bookingData: result,
       });
+
+      // ✅ BACKGROUND TASKS
+setImmediate(async () => {
+  try {
+
+    // =========================
+    // EMAIL
+    // =========================
+    const user = await User.findById(userId);
+
+    const html = generateTicket(result);
+
+    sendTicketEmail({
+      to: user.email,
+      subject: "Your IRCTC e-Ticket",
+      html,
+    }).catch((err) => {
+      console.error("❌ Email failed:", err);
+    });
+
+    // =========================
+    // REALTIME UPDATE
+    // =========================
+    emitRealTimeUpdate(
+      io,
+      train._id,
+      journeyDate,
+      source,
+      sourceIndex,
+      destIndex,
+      selectedCoachType
+    ).catch((err) => {
+      console.error("❌ Emit failed:", err);
+    });
+    
     }
     //?? RAC ✅
     else if (availabilitySnapshot.rac > 0 && passengers.length > 0) {
@@ -356,12 +389,45 @@ export const bookTrain = async (req, res) => {
 
       console.log('RAC result', result);
 
-      // await emitRealTimeUpdate(io, train._id, journeyDate, source, sourceIndex, destIndex, selectedCoachType);
 
       return res.status(201).json({
         message: "✅ RAC Booking Successful",
         bookingData: result,
       });
+
+      // ✅ BACKGROUND TASKS
+setImmediate(async () => {
+  try {
+
+    // =========================
+    // EMAIL
+    // =========================
+    const user = await User.findById(userId);
+
+    const html = generateTicket(result);
+
+    sendTicketEmail({
+      to: user.email,
+      subject: "Your IRCTC e-Ticket",
+      html,
+    }).catch((err) => {
+      console.error("❌ Email failed:", err);
+    });
+
+    // =========================
+    // REALTIME UPDATE
+    // =========================
+    emitRealTimeUpdate(
+      io,
+      train._id,
+      journeyDate,
+      source,
+      sourceIndex,
+      destIndex,
+      selectedCoachType
+    ).catch((err) => {
+      console.error("❌ Emit failed:", err);
+    });
     }
     //?? Waitlist ✅
     else if (availabilitySnapshot.wl > 0 && passengers.length > 0) {
@@ -385,12 +451,44 @@ export const bookTrain = async (req, res) => {
 
       console.log('WL result', result);
 
-      // await emitRealTimeUpdate(io, train._id, journeyDate, source, sourceIndex, destIndex, selectedCoachType);
-
       return res.status(201).json({
         message: "✅ WL Booking Successful",
         bookingData: result,
       });
+
+      // ✅ BACKGROUND TASKS
+setImmediate(async () => {
+  try {
+
+    // =========================
+    // EMAIL
+    // =========================
+    const user = await User.findById(userId);
+
+    const html = generateTicket(result);
+
+    sendTicketEmail({
+      to: user.email,
+      subject: "Your IRCTC e-Ticket",
+      html,
+    }).catch((err) => {
+      console.error("❌ Email failed:", err);
+    });
+
+    // =========================
+    // REALTIME UPDATE
+    // =========================
+    emitRealTimeUpdate(
+      io,
+      train._id,
+      journeyDate,
+      source,
+      sourceIndex,
+      destIndex,
+      selectedCoachType
+    ).catch((err) => {
+      console.error("❌ Emit failed:", err);
+    });
     }
     else if (passengers.length > 0) {
       return res.status(400).json({
