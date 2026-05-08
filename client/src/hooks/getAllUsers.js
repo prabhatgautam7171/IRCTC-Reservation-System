@@ -16,7 +16,7 @@ const useFetchUsers = (isAdmin, loading) => {
     const fetchUsers = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:8000/api/v1/user/get-AllUsers", {
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/get-AllUsers`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         dispatch(setUsers(res.data.allUsers));
