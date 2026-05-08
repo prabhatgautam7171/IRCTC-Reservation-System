@@ -1,7 +1,7 @@
-import { User } from "../../model/authModel/userModel.js";
-import { generateTicket } from "../../templates/ticketTemplate.js";
-import { sendTicketEmail } from "../../utils/sendTicket.js";
-import { emitRealTimeUpdate } from "../services/booking/emitRealTimeUpdate.js";
+import { User } from "../model/authModel/userModel";
+import { emitRealTimeUpdate } from "../services/booking/emitRealTimeUpdate";
+import { generateTicket } from "../templates/ticketTemplate";
+import { sendTicketEmail } from "./sendTicket";
 
 export const runBackgroundTasks = ({
   io,
