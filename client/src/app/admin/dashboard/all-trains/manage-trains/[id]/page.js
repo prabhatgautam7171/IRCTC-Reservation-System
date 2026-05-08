@@ -105,7 +105,7 @@ const TrainManager = () => {
     
     try {
       const res = await axios.put(
-        `http://localhost:8000/api/v1/train/edit-train/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/train/edit-train/${id}`,
         form,
         { headers: { "Content-Type": "application/json" }, withCredentials: true }
       );
