@@ -11,6 +11,7 @@ import { MdCancel } from 'react-icons/md';
 
 export default function PaymentSuccess({ params }) {
   const { sessionId } = use(params);
+  console.log("Session:", sessionId);
   const [booking, setBooking] = useState(null);
   const [loading, setLoading] = useState(true);
   const hasBookedRef = useRef(false);
@@ -21,7 +22,7 @@ export default function PaymentSuccess({ params }) {
     const trainData = JSON.parse(localStorage.getItem("trains"));
     const selectedSearch = JSON.parse(localStorage.getItem("selectedSearch"));
     const distance = JSON.parse(localStorage.getItem("reachingTime"));
-    const train = trainData.train
+    const train = trainData?.train;
     const coachType = localStorage.getItem("coachType");
     const bookingKey = `bookingDone_${sessionId}`;
 
@@ -36,10 +37,18 @@ export default function PaymentSuccess({ params }) {
       distance
     );
 
-    if (localStorage.getItem(bookingKey) || hasBookedRef.current || !sessionId || !selectedPassengers?.length || !train?.id) {
-      setLoading(false);
-      return;
-    }
+    if (
+  localStorage.getItem(bookingKey) ||
+  hasBookedRef.current ||
+  !sessionId ||
+  !selectedPassengers ||
+  !train?.id
+) {
+  console.log("Booking skipped");
+
+  setLoading(false);
+  return;
+}
 
     const confirmBooking = async () => {
       hasBookedRef.current = true;
