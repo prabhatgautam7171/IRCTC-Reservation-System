@@ -5,7 +5,7 @@ import { io } from "socket.io-client";
 let socket;
 
 if (!global._socket) {
-  global._socket = io("http://localhost:8000", {
+  global._socket = io(`${process.env.NEXT_PUBLIC_API_URL}`, {
     transports: ["websocket"], // 🔥 IMPORTANT
     autoConnect: true,
   });
