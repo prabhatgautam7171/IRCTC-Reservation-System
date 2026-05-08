@@ -31,7 +31,7 @@ export default function AdminSidebar({ isOpen, onToggle }) {
   const logoutHandler = async () => {
     try {
       if (!confirm('Are you sure you want to logout ?')) return;
-      const response = await axios.get('http://localhost:8000/api/v1/user/logout', {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/logout`, {
         withCredentials: true,
       });
 
