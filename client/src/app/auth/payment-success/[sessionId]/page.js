@@ -47,7 +47,7 @@ export default function PaymentSuccess({ params }) {
 
       try {
         const res = await axios.post(
-          `http://localhost:8000/api/v1/booking/create-booking/${train?.id}/${coachType}`,
+          `${process.env.NEXT_PUBLIC_API_URL}/api/v1/booking/create-booking/${train?.id}/${coachType}`,
           {
             passengers: selectedPassengers,
             source: selectedSearch?.from,
