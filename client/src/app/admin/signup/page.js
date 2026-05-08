@@ -37,7 +37,7 @@ export default function AdminSignupPage() {
 
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:8000/api/v1/user/register', { userName, email, password ,isAdmin});
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/register`, { userName, email, password ,isAdmin});
       if (res.data.success){
        alert(res.data.message);
        toast.message(`Welcome to IRCTC ${res.data?.user?.userName}`)
