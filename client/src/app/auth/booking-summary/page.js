@@ -61,7 +61,7 @@ export default function BookingSummary() {
       );
 
       const stripe = await stripePromise;
-      const res = await axios.post("http://localhost:8000/api/v1/payment/create-checkout-session", {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/payment/create-checkout-session`, {
         journey : selectedTrain?.journey,
         totalAmount: totalFare,
         trainName: selectedTrain.train.trainName,
