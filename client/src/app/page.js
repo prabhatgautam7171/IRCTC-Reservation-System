@@ -251,7 +251,7 @@ const TravelBookingPlatform = () => {
     try {
       if (activeTab === 'trains') {
         const res = await axios.get(
-          `http://localhost:8000/api/v1/train/get-choicetrains?from=${encodeURIComponent(searchParams.from)}&to=${encodeURIComponent(searchParams.to)}&date=${encodeURIComponent(searchParams.departure)}`
+          `${process.env.NEXT_PUBLIC_API_URL}/api/v1/train/get-choicetrains?from=${encodeURIComponent(searchParams.from)}&to=${encodeURIComponent(searchParams.to)}&date=${encodeURIComponent(searchParams.departure)}`
         );
 
         if (res.data.success) {
@@ -349,7 +349,7 @@ const TravelBookingPlatform = () => {
       try {
         if (activeTab === 'trains') {
           const res = await axios.get(
-            `http://localhost:8000/api/v1/train/stations?query=${value}`
+            `${process.env.NEXT_PUBLIC_API_URL}/api/v1/train/stations?query=${value}`
           );
           if (name === 'from') {
             setFromSuggestions(res.data.stations || []);
@@ -358,7 +358,7 @@ const TravelBookingPlatform = () => {
           }
         } else if (activeTab === 'flights') {
           const res = await axios.get(
-            `http://localhost:8000/api/v1/flight/suggestions?query=${value}`
+            `${process.env.NEXT_PUBLIC_API_URL}/api/v1/flight/suggestions?query=${value}`
           );
           if (name === 'from') {
             console.log(res.data.airports);
@@ -386,7 +386,7 @@ const TravelBookingPlatform = () => {
     if ((field === "from" || field === "to") && value.length > 0) {
       try {
         const res = await axios.get(
-          `http://localhost:8000/api/v1/flight/suggestions?query=${encodeURIComponent(value)}`
+          `${process.env.NEXT_PUBLIC_API_URL}/api/v1/flight/suggestions?query=${encodeURIComponent(value)}`
         );
 
         const updatedSuggestions = [...segmentSuggestions];
