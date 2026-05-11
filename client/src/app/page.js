@@ -86,7 +86,7 @@ const TravelBookingPlatform = () => {
   const [searchParams, setSearchParams] = useState({
     from: 'agra',
     to: 'mathura',
-    departure,
+    departure : '',
     return: '',
     travelers: 1,
     type: 'roundTrip',
