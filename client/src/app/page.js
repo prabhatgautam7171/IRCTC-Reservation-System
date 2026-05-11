@@ -86,7 +86,7 @@ const TravelBookingPlatform = () => {
   const [searchParams, setSearchParams] = useState({
     from: 'agra',
     to: 'mathura',
-    departure: Date.now(),
+    departure,
     return: '',
     travelers: 1,
     type: 'roundTrip',
@@ -1001,12 +1001,15 @@ const TravelBookingPlatform = () => {
                                 value={searchParams.departure}
                                 onChange={handleInputChange} />
                             </div>
-
-                            <span className="text-lg sm:text-xl md:text-4xl text-gray-800 font-semibold">
+{ searchParams.departure ? ( <span className="text-lg sm:text-xl md:text-4xl text-gray-800 font-semibold">
                               {formatDate(searchParams.departure)}
-                            </span>
+                            </span>) : ( <span className="text-lg sm:text-xl md:text-4xl text-gray-500 font-semibold">
+                              When ?
+                            </span> )
+}
+                           
 
-                          </div>
+                         </div>
                           <div className="flex justify-center gap-2 text-[10px] mt-2">
                             <button
                               type="button"
